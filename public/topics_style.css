@@ -1,0 +1,81 @@
+/* Import base styles (navbar, buttons, footer, etc.) */
+@import url('/index_style.css');
+
+/* Topics Section */
+.topics {
+  text-align: center;
+  padding: 70px 20px;
+  background: linear-gradient(160deg, #0f172a, #1e293b);
+}
+
+.page-title {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  margin-bottom: 50px;
+}
+
+/* Grid Layout for Topics */
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Topic Cards */
+.topic-card {
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 40px 25px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #e2e8f0;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.15);
+}
+
+.topic-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.topic-card p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+.topic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 22px rgba(139, 92, 246, 0.35);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .topics-grid {
+    gap: 20px;
+  }
+
+  .topic-card {
+    padding: 30px 20px;
+  }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Queue | CodeStar</title>
+  <link rel="stylesheet" href="/queue_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Hero -->
+  <section class="topic-hero">
+    <h1>Queue</h1>
+    <p>Enqueue problems from the array into the queue and solve them step by step.</p>
+  </section>
+
+  <!-- Problems Array -->
+  <section class="problem-container">
+    <h2>Problem Array</h2>
+    <div class="array-row" id="problemRow">
+      <% problems.forEach((p, i) => { %>
+        <div class="array-cell locked" data-index="<%= i %>">
+          <div class="problem-info">
+            <a href="<%= p.link %>" target="_blank"><%= p.title %></a>
+          </div>
+          <button class="push-btn" data-index="<%= i %>">Enqueue</button>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Stack Array -->
+  <section class="stack-container">
+    <h2>Queue</h2>
+    <div class="array-row" id="stackRow">
+      <!-- Pushed problems will appear here -->
+       <div class="stack-empty">Queue is empty</div>
+    </div>
+  </section>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <script src="/queue_script.js"></script>
+</body>
+</html>

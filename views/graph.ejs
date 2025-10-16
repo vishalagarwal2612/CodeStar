@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graph | CodeStar</title>
+  <link rel="stylesheet" href="/array_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Graph Topic Hero -->
+  <section class="topic-hero">
+    <h1>Graphs</h1>
+    <p>Explore Graph problems by sub-categories for structured learning.</p>
+  </section>
+
+  <!-- Subcategories -->
+  <section class="subcategories">
+    <div class="subcategory-grid">
+      <% const categories = [
+            { name: "BFS", desc: "Learn BFS traversal, shortest path in unweighted graphs, and applications." },
+            { name: "DFS", desc: "Practice DFS traversal, connected components, and graph exploration." },
+            { name: "Topological Sort", desc: "Understand ordering of DAG nodes using DFS and Kahn’s algorithm." },
+            { name: "Shortest Path", desc: "Master Dijkstra, Bellman-Ford, Floyd-Warshall, and related problems." },
+            { name: "Disjoint Set Union", desc: "Solve problems using union-find with path compression and union by rank." }
+        ]; %>
+      <% categories.forEach(category => { %>
+        <a href="/problems/graphs/<%= category.name.replace(/\s+/g, '-').toLowerCase() %>" 
+           class="subcategory-card">
+          <h3><%= category.name %></h3>
+          <p><%= category.desc %></p>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+</body>
+</html>

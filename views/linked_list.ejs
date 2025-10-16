@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linked List | CodeStar</title>
+  <link rel="stylesheet" href="/linked_list_style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Hero -->
+  <section class="topic-hero">
+    <h1>Linked List</h1>
+    <p>Solve sequentially to unlock the next node. Linear progression · <%= problems.length %> problems.</p>
+  </section>
+
+  <!-- Linked List -->
+  <main class="list-container" id="listContainer">
+    <!-- SVG arrows -->
+    <svg id="list-edges" class="list-edges" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7"
+                    refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa" />
+            </marker>
+        </defs>
+    </svg>
+
+    <div class="list-nodes">
+      <% problems.forEach((problem, i) => { %>
+        <div class="list-node <%= i === 0 ? '' : 'locked' %>" data-index="<%= i %>">
+          <div class="problem-info">
+            <a href="<%= problem.link %>" target="_blank"><%= problem.title %></a>
+          </div>
+          <input type="checkbox" class="problem-check" data-index="<%= i %>" <%= problem.solved ? 'checked' : '' %> />
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <script src="/linked_list_script.js"></script>
+</body>
+</html>

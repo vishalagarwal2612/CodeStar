@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | CodeStar</title>
+  <link rel="stylesheet" href="/index_style.css">
+  <style>
+    /* 404 Page Specific Styling */
+    .error-container {
+      text-align: center;
+      padding: 100px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .error-container h1 {
+      font-size: 8rem;
+      font-weight: 900;
+      color: #ef4444;
+      margin-bottom: 20px;
+      animation: shake 1s infinite;
+    }
+
+    .error-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #cbd5e1;
+    }
+
+    .error-container p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 500px;
+      margin-bottom: 30px;
+    }
+
+    .error-container a {
+      display: inline-block;
+      padding: 12px 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .error-container a:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      50% { transform: translateX(8px); }
+      75% { transform: translateX(-8px); }
+    }
+
+    @media (max-width: 768px) {
+      .error-container h1 {
+        font-size: 5rem;
+      }
+
+      .error-container h2 {
+        font-size: 1.8rem;
+      }
+
+      .error-container p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">⚡ CodeStar</div>
+
+    <% if (user) { %>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/problems">Problems</a>
+        <a href="/profile">Profile</a>
+        <a href="/leaderboard">Leaderboard</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/logout" class="btn-primary">Logout</a>
+      </div>
+    <% } else { %>
+      <div class="auth-buttons">
+        <a href="/login" class="btn-outline">Login</a>
+        <a href="/signup" class="btn-primary">Sign Up</a>
+      </div>
+    <% } %>
+  </header>
+
+  <!-- 404 Content -->
+  <div class="error-container">
+    <h1>404</h1>
+    <h2>Oops! Page Not Found</h2>
+    <p>The page you are looking for does not exist or has been moved. Please check the URL or return to the homepage.</p>
+    <a href="/">Go Back Home</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+</body>
+</html>

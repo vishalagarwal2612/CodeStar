@@ -1,0 +1,178 @@
+/* Reuse base theme */
+@import url('/index_style.css');
+
+/* Hero */
+.topic-hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(160deg, #0f172a, #1e293b);
+}
+.topic-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.topic-hero p {
+  margin-top: 12px;
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+/* Problem Container */
+.problem-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.array-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  position: relative;
+}
+
+/* Array Cells (problems) */
+.array-cell {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 14px;
+  padding: 25px 20px;
+  width: 160px;
+  text-align: center;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  position: relative;
+  z-index: 1;
+}
+.array-cell:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.25);
+}
+.array-cell.locked {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.array-cell.solved {
+  border: 2px solid #27ae60;
+  background: #0f172a;
+  box-shadow: 0 0 18px rgba(39, 174, 96, 0.4);
+}
+
+/* Bit value indicator */
+.bit-value {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.bit-value[data-bit="1"] {
+  color: #27ae60; /* green */
+}
+.bit-value[data-bit="0"] {
+  color: #e74c3c; /* red */
+}
+
+/* Problem Link + Checkbox */
+.problem-info a {
+  text-decoration: none;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.problem-info a:hover {
+  color: #60a5fa;
+}
+.problem-check {
+  margin-top: 8px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.problem-check.hidden {
+  display: none;
+}
+
+/* Toggle Button */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+#toggle-btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+  transition: background 0.3s, transform 0.2s;
+}
+#toggle-btn:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal.hidden {
+  display: none;
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.3);
+  max-width: 320px;
+}
+.modal-buttons {
+  margin-top: 16px;
+}
+.modal-buttons button {
+  margin: 0 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#confirm-yes {
+  background: #27ae60;
+  color: white;
+}
+#confirm-yes:hover {
+  opacity: 0.9;
+}
+#confirm-no {
+  background: #e74c3c;
+  color: white;
+}
+#confirm-no:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topic-hero h1 {
+    font-size: 2rem;
+  }
+  .array-cell {
+    width: 130px;
+    padding: 20px 15px;
+  }
+}

@@ -1,0 +1,207 @@
+/* Reuse base theme */
+@import url('/index_style.css');
+
+/* Hero */
+.topic-hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(160deg, #0f172a, #1e293b);
+}
+.topic-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.topic-hero p {
+  margin-top: 12px;
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+/* Graph Layout */
+.graph-container {
+  max-width: 600px;
+  height: 500px;
+  margin: 50px auto 70px;
+  position: relative;
+  padding: 0 16px;
+}
+
+.graph-edges {
+  position: absolute;
+  inset: 0;
+  z-index: 0;            /* behind nodes */
+  pointer-events: none;
+}
+
+/* Circular nodes */
+.graph-node {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 50%;
+  width: 110px;
+  aspect-ratio: 1 / 1;
+  position: absolute;     /* allows free placement */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease, opacity 0.25s ease;
+}
+
+.graph-node:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(96, 165, 250, 0.35);
+}
+
+/* States */
+.graph-node.locked {
+  opacity: 0.5;
+  cursor: default;
+}
+.graph-node.solved {
+  border: 2px solid #27ae60;
+  background: #0f172a;
+  box-shadow: 0 0 20px rgba(39, 174, 96, 0.5);
+  opacity: 1;
+}
+.graph-node.just-unlocked {
+  animation: pulse 0.7s ease;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(96,165,250,0.0); }
+  50% { box-shadow: 0 0 26px rgba(96,165,250,0.55); }
+  100% { box-shadow: 0 0 18px rgba(96,165,250,0.35); }
+}
+
+/* Link + Checkbox */
+.problem-info a {
+  text-decoration: none;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.problem-info a:hover {
+  color: #60a5fa;
+}
+
+.problem-check {
+  margin-top: 8px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* Modal */
+.modal.hidden { display: none; }
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #1e293b; color: #e2e8f0;
+  padding: 24px; border-radius: 12px; text-align: center;
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.3);
+}
+.modal-buttons { margin-top: 16px; }
+.modal-buttons button {
+  margin: 0 8px; padding: 8px 16px; border: none; border-radius: 6px;
+  font-weight: 600; cursor: pointer; transition: 0.25s;
+}
+#confirm-yes { background: #27ae60; color: #fff; }
+#confirm-no  { background: #e74c3c; color: #fff; }
+#confirm-yes:hover, #confirm-no:hover { opacity: 0.9; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .graph-container { max-width: 100%; height: 400px; }
+  .graph-node { width: 90px; }
+  .problem-info a { font-size: 0.8rem; }
+}
+
+.graph-edges {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.graph-edges line {
+  stroke: #64748b;        /* Slate-500 */
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+.graph-edges line.unlocked {
+  stroke: #60a5fa;        /* Blue highlight */
+  stroke-width: 3.5;
+}
+
+.graph-edges line.solved {
+  stroke: #27ae60;        /* Green glow */
+  stroke-width: 4;
+  filter: drop-shadow(0 0 4px rgba(39,174,96,0.6));
+}
+.graph-node {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.graph-node.locked {
+  opacity: 0.5;
+  cursor: default;  
+}
+
+.graph-node.unlocked {
+  animation: pulse 0.7s ease;
+}
+
+.graph-node.solved {
+  border: 2px solid #27ae60;
+  background: #0f172a;
+  box-shadow: 0 0 20px rgba(39, 174, 96, 0.5);
+  opacity: 1;
+}
+/* Node cursor */
+.graph-node.locked,
+.graph-node.solved {
+  cursor: default;
+}
+
+/* Disable links */
+.graph-node.locked .problem-info a,
+.graph-node.locked .problem-info a:hover,
+.graph-node.solved .problem-info a,
+.graph-node.solved .problem-info a:hover {
+  pointer-events: none;
+  cursor: default;
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+/* Disable checkbox */
+.graph-node.locked .problem-check,
+.graph-node.solved .problem-check {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}

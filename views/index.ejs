@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeStar</title>
+  <link rel="stylesheet" href="index_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Login Status Banner -->
+  <% if (user) { %>
+    <div class="login-banner success">✅ You are logged in</div>
+  <% } else { %>
+    <div class="login-banner danger">⚠️ You are not logged in</div>
+  <% } %>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Sharpen Your Coding Skills 🚀</h1>
+    <p>
+      Solve <span class="highlight">challenging problems</span>, 
+      visualize <span class="highlight">Data Structures</span>, 
+      and rise on the <span class="highlight">leaderboard</span>.
+    </p>
+    <div class="hero-buttons">
+      <% if (user) { %>
+        <!-- User is logged in -->
+        <a href="/problems" class="btn-primary">Start Solving</a>
+      <% } else { %>
+        <!-- User is not logged in -->
+        <a href="/login" class="btn-primary">Login to Solve</a>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stat-card">
+      <h2>120+</h2>
+      <p>Problems</p>
+    </div>
+    <div class="stat-card">
+      <h2>100+</h2>
+      <p>Coders</p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>🔥 Problem Practice</h3>
+      <p>Wide variety of DSA, algorithms, and real interview problems.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🔥 Visualize DSA</h3>
+      <p>Get Ready to solve problems in a new learning mode.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🔥 Handpicked Problems</h3>
+      <p>Solve selected problems to ensure complete and compact practice.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+</body>
+</html>

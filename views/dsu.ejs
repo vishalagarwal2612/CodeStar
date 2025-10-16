@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disjoint Set Union | CodeStar</title>
+  <link rel="stylesheet" href="/bfs_style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+  </header>
+
+  <!-- Hero -->
+  <section class="topic-hero">
+    <h1>Disjoint Set Union (DSU)</h1>
+    <p>Learn DSU problems step by step. 6 nodes · 0 edges.</p>
+  </section>
+
+  <!-- Graph -->
+  <main class="graph-container" id="graphContainer">
+    <!-- Empty SVG (no edges needed) -->
+    <svg id="graph-edges" class="graph-edges" xmlns="http://www.w3.org/2000/svg"></svg>
+
+    <!-- Nodes -->
+    <% for (let i = 0; i < 5; i++) { %>
+      <div class="graph-node locked" data-index="<%= i %>">
+        <div class="problem-info">
+          <a href="<%= problems[i].link %>" target="_blank"><%= problems[i].title %></a>
+        </div>
+        <input type="checkbox" class="problem-check" data-index="<%= i %>" <%= problems[i].solved ? 'checked' : '' %> />
+      </div>
+    <% } %>
+  </main>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <script src="/dsu_script.js"></script>
+</body>
+</html>

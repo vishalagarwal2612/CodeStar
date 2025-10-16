@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DP Problems | CodeStar</title>
+  <link rel="stylesheet" href="/dp_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Hero -->
+  <section class="topic-hero">
+    <h1>Dynamic Programming</h1>
+    <p>Challenge yourself with DP problems and master optimization techniques.</p>
+  </section>
+
+  <!-- Recurrence Relation -->
+  <section class="dp-recurrence">
+    <pre><code>dp[i][j] = dp[i+1][j] + dp[i][j+1]</code></pre>
+  </section>
+
+  <!-- Problem Grid -->
+  <main class="problem-container">
+    <div class="dp-grid">
+      <% problems.slice(0, 9).forEach((p, i) => { %>
+        <div class="dp-cell <%= p.locked ? 'locked' : '' %>" data-index="<%= i %>">
+          <div class="problem-info">
+            <a href="<%= p.link %>" target="_blank"><%= p.title %></a>
+          </div>
+          <input type="checkbox" class="problem-check" data-index="<%= i %>" <%= p.solved ? 'checked' : '' %> />
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p id="modal-message">Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <script src="/dp_script.js"></script>
+</body>
+</html>

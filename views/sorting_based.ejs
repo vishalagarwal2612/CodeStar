@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorting Problems</title>
+  <link rel="stylesheet" href="/sorting_based_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Hero Section -->
+  <section class="topic-hero">
+    <h1>Sorting Problems</h1>
+    <p>Visualize sorting with bars and solve problems step by step</p>
+  </section>
+
+  <!-- Bars Container -->
+  <section class="problem-container">
+    <div class="bars-row">
+      <% problems.forEach((problem, index) => { 
+           let barHeight = 80 + (index+1) * 30; // increasing height
+      %>
+        <div class="bar-wrapper">
+          <!-- Problem Cell -->
+          <div class="array-cell <%= problem.solved ? 'solved' : '' %>">
+            <div class="problem-info">
+              <a href="<%= problem.link %>" target="_blank"><%= problem.title %></a>
+              <div>
+                <input type="checkbox" 
+                       class="problem-check" 
+                       data-id="<%= problem.id %>" 
+                       />
+              </div>
+            </div>
+          </div>
+          <!-- Bar -->
+          <div class="array-bar" style="height:<%= barHeight %>px;"></div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Confirmation Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <script src="/sorting_based_script.js"></script>
+</body>
+</html>

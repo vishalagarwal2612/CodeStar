@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bit Manipulation | CodeStar</title>
+  <link rel="stylesheet" href="/bit_manipulation_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Hero -->
+  <section class="topic-hero">
+    <h1>Bit Manipulation</h1>
+    <p>Practice solving problems using bitwise operators and tricks.</p>
+  </section>
+
+  <!-- Problem Array -->
+  <main class="problem-container">
+    <div class="array-row" id="problemRow">
+      <% 
+        // Predefined bit sequence
+        const bitSeq = "100110"; 
+      %>
+      <% problems.forEach((p, i) => { %>
+        <div class="array-cell">
+          <div class="problem-info">
+            <a href="<%= p.link %>" target="_blank"><%= p.title %></a>
+          </div>
+          <!-- Use predefined bit sequence -->
+          <span class="bit-value"><%= bitSeq[i % bitSeq.length] %></span>
+          <input type="checkbox" class="problem-check hidden" data-index="<%= i %>" />
+        </div>
+      <% }) %>
+    </div>
+  </main>
+  <div class="toggle-container">
+  <button id="toggle-btn" class="toggle-btn">Toggle Bits</button>
+</div>
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+  <script src="/bit_manipulation_script.js"></script>
+</body>
+</html>

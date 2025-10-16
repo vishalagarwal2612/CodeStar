@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topics | CodeStar</title>
+  <link rel="stylesheet" href="topics_style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Topics Section -->
+  <section class="topics">
+    <h1 class="page-title">Problem Topics 📚</h1>
+    <p class="page-subtitle">Choose a topic and start solving structured problems</p>
+
+    <div class="topics-grid">
+      <% const topics = ["Arrays", "Strings", "Linked List", "Stacks", "Queues", "Trees", "Graphs", "Dynamic Programming", "Bit Manipulation", "Mathematics", "Hashing", "Recursion / Backtracking"]; %>
+      <% topics.forEach(topic => { %>
+        <a href="/problems/<%= topic.toLowerCase().replace(/\s+/g, '-') %>" class="topic-card">
+          <h3><%= topic %></h3>
+          <p>Practice problems on <%= topic %>.</p>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= user.username %>'s Profile | CodeStar</title>
+  <link rel="stylesheet" href="profile_style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">⚡ CodeStar</div>
+
+    <% if (user) { %>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/problems">Problems</a>
+        <a href="/profile" class="active">Profile</a>
+        <a href="/leaderboard">Leaderboard</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/logout" class="btn-primary">Logout</a>
+      </div>
+    <% } else { %>
+      <div class="auth-buttons">
+        <a href="/login" class="btn-outline">Login</a>
+        <a href="/signup" class="btn-primary">Sign Up</a>
+      </div>
+    <% } %>
+  </header>
+
+  <!-- Profile Header -->
+  <section class="profile-header">
+    <h1>👤 <%= user.username %>'s Profile</h1>
+    <p>Email: <%= user.email %></p>
+  </section>
+
+  <!-- Topics / Progress Section -->
+  <section class="progress-section">
+    <h2>Your Progress</h2>
+
+    <div class="topic-grid">
+      <% topics.forEach(topic => { 
+          const percent = topic.total ? Math.floor((topic.solved / topic.total) * 100) : 0;
+      %>
+        <div class="topic-card" data-topic="<%= topic.dbname %>">
+          <h3><%= topic.name %></h3>
+          <div class="progress-bar">
+            <div class="progress" style="width: <%= percent %>%"></div>
+          </div>
+          <p class="progress-text"><%= topic.solved %> / <%= topic.total %> solved (<%= percent %>%)</p>
+          <button class="btn-outline reset-btn">Reset Progress</button>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <!-- AJAX Script for Reset -->
+  <script>
+    document.querySelectorAll(".reset-btn").forEach(btn => {
+      btn.addEventListener("click", async (e) => {
+        const card = e.target.closest(".topic-card");
+        const topic = card.dataset.topic;
+
+        try {
+          const res = await fetch(`/reset/${topic}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }
+          });
+
+          if (res.ok) {
+            // Reset progress visually
+            const progressBar = card.querySelector(".progress");
+            const progressText = card.querySelector(".progress-text");
+
+            // Extract total from original text "solved / total solved (percent%)"
+            const total = progressText.textContent.split('/')[1].trim().split(' ')[0];
+
+            progressBar.style.width = "0%";
+            progressText.textContent = `0 / ${total} solved (0%)`;
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

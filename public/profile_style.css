@@ -1,0 +1,205 @@
+/* ========================== */
+/* Import base styles (navbar, buttons, footer, etc.) */
+@import url('/index_style.css');
+
+/* ========================== */
+/* Profile Page Container */
+.profile-page {
+  text-align: center;
+  padding: 70px 20px;
+  background: linear-gradient(160deg, #0f172a, #1e293b);
+}
+
+/* ========================== */
+/* Profile Header */
+.progress-section {
+  margin-bottom: 50px;
+}
+
+.progress-section h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Make it full width and centered */
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.profile-header {
+  display: block;
+  width: 100%;          /* Full width */
+  max-width: 100%;      /* Remove max-width restriction */
+  margin: 0 0 50px 0;   /* Only bottom margin */
+  padding: 50px 60px;   /* Keep padding inside */
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 0px;   /* Remove rounding if you want edge-to-edge */
+  box-shadow: none;     /* Optional: remove shadow if full width */
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-header:hover {
+  transform: none;       /* Optional: disable hover transform for full width */
+  box-shadow: none;      /* Optional */
+}
+
+
+.profile-header h1 {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* Optional user icon/avatar */
+.profile-header h1::before {
+  font-size: 2.6rem;
+}
+
+/* Email text */
+.profile-header p {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
+
+/* Verified Badge */
+.verified-badge {
+  display: inline-block;
+  background: #16a34a33;
+  color: #22c55e;
+  padding: 6px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ========================== */
+/* Progress Section */
+.progress-section h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Grid Layout for Progress Cards */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 42px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Individual Progress Cards */
+.topic-card {
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 35px 25px;
+  text-align: center;
+  color: #e2e8f0;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.topic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 22px rgba(139, 92, 246, 0.35);
+}
+
+/* Card Titles */
+.topic-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 12px;
+  background: #0f172a;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px 0;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+
+/* Card Text */
+.topic-card p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+/* Reset Button */
+.reset-btn {
+  background: transparent;
+  border: 1px solid #60a5fa;
+  color: #60a5fa;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ========================== */
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #111827;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+/* ========================== */
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .profile-header {
+    padding: 30px 35px;
+  }
+
+  .profile-header h1 {
+    font-size: 2rem;
+  }
+
+  .progress-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .topic-grid {
+    gap: 20px;
+  }
+
+  .topic-card {
+    padding: 28px 20px;
+  }
+}

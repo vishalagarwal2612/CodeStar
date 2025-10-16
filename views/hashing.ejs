@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hashing | CodeStar</title>
+  <link rel="stylesheet" href="/hashing_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Hero -->
+  <section class="topic-hero">
+    <h1>Hashing</h1>
+    <p>Practice problems bucketed by difficulty levels using hashing visualization.</p>
+  </section>
+
+  <!-- Problem Visualizer -->
+  <main class="hashing-container">
+    <% problems.forEach((p, i) => { %>
+      <div class="hashing-row">
+        <!-- Left Label -->
+        <div class="bucket"><%= p.difficulty %></div>
+
+        <!-- Arrow -->
+        <div class="arrow">
+          <svg width="60" height="20" viewBox="0 0 60 20">
+            <line x1="0" y1="10" x2="50" y2="10" stroke="#60a5fa" stroke-width="2"/>
+            <polygon points="50,5 60,10 50,15" fill="#60a5fa"/>
+          </svg>
+        </div>
+
+        <!-- Right Problem Cell -->
+        <div class="array-cell <%= p.locked ? 'locked' : '' %>">
+          <div class="problem-info">
+            <a href="<%= p.link %>" target="_blank"><%= p.title %></a>
+          </div>
+          <input type="checkbox"
+                 class="problem-check"
+                 data-index="<%= i %>"
+                 <%= p.solved ? 'checked' : '' %> />
+        </div>
+      </div>
+    <% }) %>
+  </main>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <script src="/hashing_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+/* Reuse base theme */
+@import url('/index_style.css');
+
+/* Hero */
+.topic-hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(160deg, #0f172a, #1e293b);
+}
+.topic-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.topic-hero p {
+  margin-top: 12px;
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+/* Section headings */
+.problem-container h2,
+.stack-container h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #60a5fa;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+/* Problem and Stack containers */
+.problem-container,
+.stack-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.array-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  position: relative;
+  min-height: 100px;
+}
+
+/* Array / Stack cells */
+.array-cell {
+  background: rgb(30, 41, 59);
+  color: #e2e8f0;
+  border-radius: 14px;
+  padding: 25px 20px;
+  width: 160px;
+  text-align: center;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+/* Locked array cells (fades text and checkbox, not button) */
+.array-cell.locked .problem-info,
+.array-cell.locked .problem-check {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Push button styling */
+.push-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Stack empty placeholder */
+.stack-empty {
+  width: 160px;
+  height: 80px;
+  border: 2px dashed #60a5fa;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Top of stack highlight */
+.top-stack {
+  border: 2px solid #60a5fa;
+  box-shadow: 0 0 14px rgba(96, 165, 250, 0.5);
+}
+
+/* Modal */
+.modal.hidden {
+  display: none;
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.3);
+}
+.modal-buttons {
+  margin-top: 16px;
+}
+.modal-buttons button {
+  margin: 0 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#confirm-yes {
+  background: #27ae60;
+  color: white;
+}
+#confirm-yes:hover {
+  opacity: 0.9;
+}
+#confirm-no {
+  background: #e74c3c;
+  color: white;
+}
+#confirm-no:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topic-hero h1 {
+    font-size: 2rem;
+  }
+  .array-cell,
+  .stack-empty {
+    width: 130px;
+    padding: 20px 15px;
+  }
+}
+/* Locked array cells (like Sliding Window) */
+
+/* Fade text and checkbox but keep cell fully visible */
+.array-cell.locked a {
+  pointer-events: none;
+  opacity: 0.6;
+}
+.problem-info a {
+  text-decoration: none;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.problem-info a:hover {
+  color: #60a5fa;
+}
+/* Fade only the problem text and links */
+.array-cell.locked .problem-info a,
+.array-cell.locked .problem-check {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Push button stays fully visible */
+.array-cell.locked .push-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.array-cell.locked{
+    background: rgb(30, 41, 59, 0.5);
+}
+.push-btn {
+  margin-top: 12px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.push-btn.disabled-push {
+  opacity: 0.5 !important; /* force override */
+  cursor: default;
+}
+
+/* Stack cell checkbox */
+.stack-cell .problem-check {
+  margin-top: 8px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* Locked stack cell */
+.stack-cell.locked .problem-check {
+  opacity: 0.5;
+  pointer-events: none; /* prevents clicking for non-top items */
+}
+/* Solved problem in array or stack */
+.array-cell.solved,
+.stack-cell.solved {
+  border: 2px solid #27ae60;          /* green border */
+  background: #0f172a;                /* slightly darker background */
+  box-shadow: 0 0 18px rgba(39, 174, 96, 0.4); /* soft glow */
+  opacity: 1;                          /* fully visible */
+}
+
+/* Optional: solved text link */
+.array-cell.solved .problem-info a,
+.stack-cell.solved .problem-info a {
+  color: #27ae60;
+}
+
+/* Disable push button for solved array cells */
+.array-cell.solved .push-btn {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
+}
+
+.stack-container .array-row {
+  display: flex;
+  flex-direction: column-reverse;  /* top of stack is visually at top */
+  align-items: center;
+  gap: 15px;
+  min-height: 150px;
+}
+
+/* Stack cells */
+.stack-cell {
+  width: 180px;                 /* slightly wider for vertical layout */
+}

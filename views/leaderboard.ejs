@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard | CodeStar</title>
+  <link rel="stylesheet" href="leaderboard_style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">⚡ CodeStar</div>
+
+    <% if (user) { %>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/problems">Problems</a>
+        <a href="/profile" class="active">Profile</a>
+        <a href="/leaderboard">Leaderboard</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/logout" class="btn-primary">Logout</a>
+      </div>
+    <% } else { %>
+      <div class="auth-buttons">
+        <a href="/login" class="btn-outline">Login</a>
+        <a href="/signup" class="btn-primary">Sign Up</a>
+      </div>
+    <% } %>
+  </header>
+  <!-- Page Heading -->
+  <section class="leaderboard-header">
+    <h1>🏆 Leaderboard</h1>
+    <p>Compete with others and climb the ranks!</p>
+  </section>
+  <!-- Leaderboard Table -->
+  <section class="leaderboard-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Solved Problems</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% allUsers.forEach((u, index) => { %>
+          <tr class="<%= user && u.username === user.username ? 'highlight-row' : '' %>">
+            <td><%= index + 1 %></td>
+            <td><%= u.username %></td>
+            <td><%= u.totalSolved %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+</body>
+</html>

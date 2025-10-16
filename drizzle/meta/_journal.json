@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1759310620792,
+      "tag": "0000_fuzzy_vanisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1759487380731,
+      "tag": "0001_purple_ken_ellis",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1760605748164,
+      "tag": "0002_cooing_snowbird",
+      "breakpoints": true
+    }
+  ]
+}

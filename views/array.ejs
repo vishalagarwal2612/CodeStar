@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays | CodeStar</title>
+  <link rel="stylesheet" href="/array_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Array Topic Hero -->
+  <section class="topic-hero">
+    <h1>Arrays</h1>
+    <p>Explore Array problems by sub-categories for structured learning.</p>
+  </section>
+
+  <!-- Subcategories -->
+  <section class="subcategories">
+    <div class="subcategory-grid">
+      <% const categories = [
+        { name: "Two Pointers", desc: "Solve problems with two-pointer approach" },
+        { name: "Sliding Window", desc: "Optimize with sliding window technique" },
+        { name: "Prefix Sum", desc: "Use prefix sums for efficient queries" },
+        { name: "Sorting Based", desc: "Problems involving sorting tricks" },
+        { name: "Binary Search", desc: "Classic searching-based problems" },
+        { name: "Miscellaneous", desc: "Other important array challenges" }
+      ]; %>
+
+      <% categories.forEach(category => { %>
+        <a href="/problems/arrays/<%= category.name.replace(/\s+/g, '-').toLowerCase() %>" 
+           class="subcategory-card">
+          <h3><%= category.name %></h3>
+          <p><%= category.desc %></p>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+</body>
+</html>

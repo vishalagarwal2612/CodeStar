@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Window | CodeStar</title>
+  <link rel="stylesheet" href="/sliding_window_style.css">
+</head>
+<body>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">⚡ CodeStar</div>
+
+  <% if (user) { %>
+    <!-- Logged in: show nav links + logout -->
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/problems">Problems</a>
+      <a href="/profile">Profile</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="/logout" class="btn-primary">Logout</a>
+    </div>
+  <% } else { %>
+    <!-- Not logged in: show only login/signup -->
+    <div class="auth-buttons">
+      <a href="/login" class="btn-outline">Login</a>
+      <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+  <% } %>
+</header>
+
+
+  <!-- Hero -->
+  <section class="topic-hero">
+    <h1>Sliding Window</h1>
+    <p>Practice solving problems using the sliding window technique step by step.</p>
+  </section>
+
+  <!-- Problem Visualizer -->
+  <main class="problem-container">
+    <div class="array-row" id="problemRow">
+      <!-- Highlight window (moves over cells) -->
+      <div class="window-highlight" id="windowHighlight"></div>
+
+      <% problems.forEach((p, i) => { %>
+        <div class="array-cell <%= p.locked ? 'locked' : '' %>" data-index="<%= i %>">
+          <div class="problem-info">
+            <a href="<%= p.link %>" target="_blank"><%= p.title %></a>
+          </div>
+          <input type="checkbox" class="problem-check" data-index="<%= i %>" <%= p.solved ? 'checked' : '' %> />
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Mark this problem as solved?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> CodeStar. Built for coders, by coders.</p>
+  </footer>
+
+  <script src="/sliding_window_script.js"></script>
+</body>
+</html>
