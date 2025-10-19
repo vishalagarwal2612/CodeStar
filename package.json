@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node --env-file=.env --watch app.js",
     "App": "node --env-file=.env --watch app.js",
     "db:generate": "drizzle-kit generate --config C:/Users/Vishal/.vscode/WebDev/DSAverse/drizzle.config.js",
     "db:migrate": "drizzle-kit migrate --config C:/Users/Vishal/.vscode/WebDev/DSAverse/drizzle.config.js"

@@ -29,7 +29,7 @@ app.use(SubmissionRouter);
 app.use(ProgressRouter);
 app.use(PageNotFound);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log("CodeStar is Running!!");
 });
